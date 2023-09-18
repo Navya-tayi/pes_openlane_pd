@@ -268,8 +268,97 @@ To see the floor plan: Using MAGIC
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b7d29b72-a3d3-4360-bbcb-292ffc506672.png)
 
-'''
+```
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
-'''
+```
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/616538bc-f75b-4411-b995-a77f609cb06c.png)
+
+* SKY_L8 - Review floorplan layout in Magic
+
+
+Use "Z" to zoom in 
+and to choose a cell, hover over it and press "S"
+
+in the tkcon console type "what" to find which layer it is in
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/01caa690-63f0-4242-aeb0-55e701dee33f)
+
+vertical cell:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/6d7daccd-cd55-47cf-bf18-551e481b121f)
+
+
+decap cells:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/7d510914-3649-416a-b1da-6d4195f68bdc)
+
+
+Standar cells in the lower left corner:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0ed347c6-7c58-4898-8e53-53c78ab0609b)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b7fccc04-bd5e-45c5-bd07-4a1ed0cb919d)
+
+
+## ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/229ea794-8fcf-404f-9714-b0a56c6abc9c)
+
+* SKY_L1 - Netlist binding and initial place design
+  
+* SKY_L3 - Final placement optimization
+
+* SKY_L4 - Need for libraries and characterization
+
+* SKY_L5 - Congestion aware placement using RePlAce
+
+  Global placement => coarse placeemnt, no legalization
+  legalization : Standard cells are placed exactly inside standard rows, there should be no overlaps
+
+  objective of global placement is to reduce wire length
+
+  ```
+  run_placement
+  ```
+
+After placement :
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/7201d021-206c-46fa-a7f5-b60f8b6db63e)
+
+ Standard cells which were initially in the bottom left have moved into the standard rows:
+
+ ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/9b28532a-5987-4d56-bc10-779a6b8c6f75)
+
+ ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c06481ee-e021-4fca-8b3a-35daac7ea10b.png)
+
+
+ usually power distribution netwrok is also gets created during floor plan but in open lane the flow is a little different
+ Floor plan does not create power distribution
+
+ We do it before routing and post CTS
+
+ ## SKY130_D2_SK3 - Cell design and characterization flows
+
+ * SKY_L1 - Inputs for cell design flow
+
+ * SKY_L2 - Circuit design step
+
+ * SKY_L3 - Layout design step
+
+ * SKY_L4 - Typical characterization flow
+
+## SKY130_D2_SK4 - General timing characterization parameters
+
+* SKY_L1 - Timing threshold definitions
+
+* SKY_L2 - Propagation delay and transition time
+
+
+# Sky130 Day 3 - Design library cell using Magic Layout and ngspice characterization
+
+## SKY130_D3_SK1 - Labs for CMOS inverter ngspice simulations
+
+* SKY_L0 - IO placer revision
+
+  
+
 
