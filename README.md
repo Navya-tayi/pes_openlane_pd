@@ -116,32 +116,32 @@ libs.tech => contails files specific to the tool
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/732a5eea-e062-4fce-8eb9-d8d88afa797b.png)
 
 * SKY_L2 - Design Preparation Step
-'''
+```
 docker
 pwd
 ls -ltr
 
-'''
+```
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c43a6b9b-7834-4491-8394-1b8cde465a4f.png)
 
-'''
+```
  ./flow.tcl -interactive
-'''
+```
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b47c5a57-1182-4cf9-b78e-68b62e8c6f32.png)
 
-'''
+```
 package require openlane 0.9
 
-'''
+```
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/1a837c32-fba5-4d88-9fe9-678d3883be97.png)
 
 Design setup stage:
 
-'''
+```
 prep -design picorv32a
 
-'''
+```
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0dc4f544-07be-4cde-a89f-2687e7b0a736.png)
 
 
@@ -153,9 +153,9 @@ Merge files created by merging LEFs:
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/f6ea264c-722d-42f0-a952-4808a14b89ae.png)
 
-'''
+```
 run_synthesis
-'''
+```
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b1f40bf3-f54b-49ab-a51e-543f3b5336da.png)
 
@@ -171,9 +171,9 @@ Finding Flop Ratio:
 
 Statistics report:
 
-'''
+```
 less 1-yosys_4.stat.rpt
-'''
+```
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/9122d9f3-53c3-487a-8340-1facc7993b06.png)
 
@@ -181,9 +181,9 @@ less 1-yosys_4.stat.rpt
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/8550d725-013c-4d29-baaa-4bc0c79edc48.png)
 
 Timing report:
-'''
+```
 less 2-opensta.timing.rpt
-'''
+```
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/90f32b82-c2b2-491b-8f10-50c1f7352cb6.png)
 
 ## Sky130 Day 2 - Good floorplan vs bad floorplan and introduction to library cells
@@ -250,10 +250,10 @@ FP_IO MODE: Pin configurations around the core
 
 In openlane flow, the vertical and horizontal metal will be one more than what you have specified
 
-''' 
+``` 
 ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/18-09_12-35/results/floorplan$ less picorv32a.floorplan.def
 
-'''
+```
 def file => design exchange format
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/47a7cd00-e265-4a19-ae7d-cf0cee66b408.png)
 
@@ -359,6 +359,400 @@ After placement :
 
 * SKY_L0 - IO placer revision
 
-  
+To change how the IO ports are placed:
+4 stratergies supported by io placer:
+
+After changing:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3bc57e6e-1619-4f71-90a4-ae13a5c8989a)
+
+* SKY_L0 - IO placer revision
+
+* SKY_L1 - SPICE deck creation for CMOS inverter
+
+* SKY_L2 - SPICE simulation lab for CMOS inverter
+
+* SKY_L3 - Switching Threshold Vm
+
+* SKY_L4 - Static and dynamic simulation of CMOS inverter
+
+* SKY_L5 - Lab steps to git clone vsdstdcelldesign
+ 
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/8ff14b85-c428-4e5c-a750-3189bdedcc4a)
+
+Different Layers used in building of the inverter:
+
+1. Copying the tech file to the required place:
+
+   ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3ae6b675-f0ee-41a6-8297-07d77a0991f6)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d1a0f64b-b592-479a-b361-3ea6075981c4)
+
+
+& => is the keep the next command promp free
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/78844dae-da18-4be8-a2d9-147e1fa81a79)
+
+
+
+Red Line is the Poly
+
+## SKY130_D3_SK2 - Inception of Layout and CMOS fabrication process
+
+* SKY_L1 - Create Active regions
+
+* SKY_L2 - Formation of N-well and P-well
+
+* SKY_L3 - Formation of gate terminal
+
+* SKY_L4 - Lightly doped drain (LDD) formation
+
+* SKY_L5 - Source and drain formation
+
+* SKY_L6 - Local interconnect formation
+
+* SKY_L7 - Higher level metal formation
+
+* SKY_L8 - Lab introduction to Sky130 basic layers layout and LEF using inverter
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d4d4d33d-a1f0-4e0e-ba4a-661a306ea0c4)
+
+The green coloured part is n-diffusion layer. This we can infer from the colour pallete.
+Brown is p-diffusion.
+
+When poly crosses n-diffusion, it is nmos
+
+s![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/4433a966-d39b-482e-bd85-7dddcd8abb00)
+
+When poly crosses p-diffusion it is pmos
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/090f3dce-6b4a-4584-915e-069ee2c6e784)
+
+To check whether drain of pmos and nmos are connected:
+Source of pmos should be connected to vdd
+And source of nmos to ground
+
+Press "S" twice while hovering the mouse over the part, to check what it is connected to:
+In this case, we hovered over Y and presses "S" twice
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/703ae154-678b-4340-95ee-d1befcdda04a)
+
+Connectivity of source of pmos to vdd:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/8af0e5a9-9183-4f4d-b8fa-b7f4342984b3)
+
+Source of nmos to ground:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/fa97d04f-75c1-490d-9081-10d9d8086c4f)
+
+for PNR placement of any cell/macro, you dont need logic information. You only need to know the boundry and pins.
+LEFs also protect the IPs.
+
+* SKY_L9 - Lab steps to create std cell layout and extract spice netlist
+Always make sure the DRC error is 0. It cannot be manufactured if DRC error is present.
+
+How do we know the logical functioning?
+1. To extract it on spice, got to tkcon window
+2. Create an extraction file
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/39ded6af-02d0-4942-99b4-46dd44e49117)
+
+To check if ti has been created:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/396a6e9d-2b64-4bf4-8ef5-72f0c48e0276)
+
+ext2spice => extract to spice, and we are also extracting the parasitic capacitances also
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/58477c46-3925-4e78-a09e-87dd65829159)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/2e21ccc5-7e16-44a9-a9c6-588ec92e3fb8)
+
+Spice file has been created:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c15b18d8-8a00-4d70-864a-622ef34bb3f3)
+
+Inside the spice file:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/53807526-ca30-4004-b502-d6d849d36c9b)
+
+## SKY130_D3_SK3 - Sky130 Tech File Labs
+
+* SKY_L1 - Lab steps to create final SPICE deck using Sky130 tech
+
+  Understanding the spice deck:
+
+  pshort =>PMOS
+  nshort =>NMOS
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/f8cf8f23-6d87-4eab-8e86-cb514b64db2c)
+
+We need to define VDD, VSS AND VG for transient analysis
+
+To find dimensions of the box, enable the grid by going to windo -> grid on
+Right click on the grid you want to select, and type box in the tkcon window to see the dimensions
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/2ddee9d7-629f-4b6f-8c9e-4455a27f4317)
+
+
+Changing the scale to 0.01u:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/6c911aca-7190-48bb-ad49-70ddda00597c)
+
+Creating the flow for the spice deck:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/27b26325-8333-4b8e-a70c-6131dc358806)
+
+model file:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/13302e5b-5975-4c0e-a8a9-7f15e77a88fc)
+
+In the spice model file the pshort is named as pshort_model.0
+Hence, we need to change its name in the spice deck.
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d66f32f8-8433-49b9-87e3-9df7fc8cd0bd)
+
+Install ngspice:
+```
+sudo apt install ngspice
+```
+
+Run the spice simulation and pass the spice deck as the source file:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/9226ceda-21c1-4d72-a7b1-5e159f211ca7)
+
+* SKY_L2 - Lab steps to characterize inverter using sky130 model files
+
+Plotting the simulation:
+
+```
+plot y vs time a // plot the output vs time sweeping the input
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/aca05dc4-1734-4482-8631-50f115361db0)
+
+Plot:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/03e9e91f-1cc8-406b-8bb1-15614703b59a)
+
+Charecterize the cell:
+
+To find the value of 
+1. Rise transition (time taken for o/p waveform to transit from 20% to 80% of max value)
+20% of the rising waveform is at: 2.164 ns at 0.66 V
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/140684fd-6819-4b4d-8f41-7d12635f1a11)
+
+80% of rising waveform is at : 2.205 ns at 2.64 V
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/fe81d32d-90f5-44b8-9c11-5e5261e77c0b)
+
+Rise time = 2.205-2.164 = 0.041 ns
+
+
+2. Fall transition time (time taken for o/p waveform to fall from 80% to 20% of max value)
+3. Cell Rise delay  (time diff between 50% of output and 50% of input rise time) : at 1.65 V
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/f849ac4e-0603-4b38-b1c6-4f4015e8ae30)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0552c004-ae9d-4929-810f-179fc04122b6)
+
+Calculation:
+2.18 -2.15 = 0.03 ns
+
+4. Cell fall delay (time diff between 50% of output and 50% of input fall time)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0d77e584-6c60-4daf-890e-865172744259)
+
+Calculation:
+4.08 -4.04 = 0.04 ns
+
+* SKY_L3 - Lab introduction to Magic tool options and DRC rules
+Website to understand magic: http://opencircuitdesign.com/magic/
+
+The technology file is one single magic file that tells MAGIC, everything it needs to know about the process. It declares all layer types in colours and patterns but it also defines electrical connectivity, DRC Rules, GDS generation rules, device extraction rules for extracting netlists, LEF, DEF etc...
+
+SkyWater Documentation: https://skywater-pdk.readthedocs.io/en/main/
+Github site: https://github.com/google/skywater-pdk
+
+* SKY_L4 - Lab introduction to Sky130 pdk's and steps to download labs
+Get drc_tests.tgz
+
+```
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+tar xfz drc_tests.tgz
+cd drc_tests
+
+```
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/e9a29468-74c4-4364-9b01-731ce4627ebb)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/8e0f98f4-7e44-44a8-b1ef-a702cc02f6de)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/56f9b980-214a-4366-a51b-bc5e0eb47acb)
+
+* SKY_L5 - Lab introduction to Magic and steps to load Sky130 tech-rules
+
+```
+magic -d XR
+```
+Open met3:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/cf29f7b4-76a0-46c2-8442-fad8f9fe5424)
+
+The white patches show the DRC error
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/5aafa453-0e7e-45d5-bcef-9d2a9b0ea02d)
+
+The erros can be observed in the tkcon window:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/1b1fdb7a-1c07-4bf9-9d40-cb7a355616d8)
+
+From the documentation:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/81338bc0-eae9-4908-b5c4-5102a70776f6)
+
+MAke a small section in an empty space and choose m3contact from the paint pallete, then in tkcon type "cif see VIA2"
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/ebf81f74-cf7b-485c-8dd7-95e05ae17e9e)
+
+The black spaces which appear are the contact cuts. They don't actually exist in the drawn layout view, but what they represent is 
+the mask layer for via2 that will end up in the output GDS when you geenrate GDS from the layout.
+
+They are created form the rules in the sif output section of the tech file. Which tells how to draw contact cuts.
+
+To snap the selection box close to the cut use
+```
+snap int
+box
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/ce244ff1-5e4c-41e4-b9db-38c3a3c1470f)
+
+To find distance from edge:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b7c2d696-ec57-42c9-ade9-13424fd5eefb)
+
+
+* SKY_L6 - Lab exercise to fix poly.9 error in Sky130 tech-file
+
+* SKY_L7 - Lab exercise to implement poly resistor spacing to diff and tap
+
+* SKY_L8 - Lab challenge exercise to describe DRC error as geometrical construct
+
+
+# sky130 Day 4 - Pre-layout timing analysis and importance of good clock tree
+
+## SKY130_D4_SK1 - Timing modelling using delay tables
+
+* SKY_L1 - Lab steps to convert grid info to track info
+
+Extract LEF file out of this mag file and plug it into picorv32
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3605eca9-a69a-488b-b291-8c2f4a41d408)
+
+
+Tracks are used during routing stage:
+Where all you want your routes to go.
+Requirement 1: Ports should be on the intersection of the horizonal and vertical tracks.
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/9ac9bee1-5910-4179-bed3-2e450d1af159)
+
+Ports should be on the intersection of the li1 tracks, intersection of horiizontal and vertical tracks:
+
+We change the grid size to match the track information:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/6ffc4f01-e0ce-4e1c-b069-a967ec03781f)
+
+The input and output ports are at the intersections of the horizontal and vertical tracks:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/ffa87ba2-0dd1-4f41-9ac6-cc85872ab1d9)
+
+* SKY_L2 - Lab steps to convert magic layout to std cell LEF
+
+Requirement 2: The width of the standard cell should be in the odd multiples of the x pitch
+
+xpitch from the track info is 0.46
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/077c1bb8-7021-48ec-b250-2767956bc727)
+
+There is a total of 3 boxes (1+1+1/2+1/2) ie, width of the standard cell is in the odd multiples of the x pitch.
+
+Whenever you make the layout there are no ports. When you extraxt the LEF file, the ports are deifned as pins
+
+To define ports for diffferent layers:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/89921f9b-706b-474b-aeeb-e4e26636ffb2)
+
+After defining ports, we have to define the purpose of the port
+
+After these two paramters have been set, we are ready to extract the LEF file
+
+To create the LEF file:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d6799258-f87a-429a-ae81-9ee901c47a67)
+
+It has been created:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/81d35d2a-7bc2-48bf-ad18-7395a4605a5c)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/bc326d0e-9cdd-4143-aaed-3ebbdcee265f)
+
+Next, plug this lef file into picorv32 flow
+
+* SKY_L3 - Introduction to timing libs and steps to include new cell in synthesis
+
+* SKY_L4 - Introduction to delay tables
+
+* SKY_L5 - Delay table usage Part 1
+
+* SKY_L6 - Delay table usage Part 2
+
+* SKY_L7 - Lab steps to configure synthesis settings to fix slack and include vsdinv
+
+Copying the lef file and sky130 library file to src folder of picorv32a:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/2b6038c3-b25f-4795-9f14-1029cc61e069)
+
+Editing config.tcl to be able to use our custom cell:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/b0287f5d-98b8-4996-8518-58a335260ec4)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/caf1ed92-babe-4055-98ce-e463b8fa7426)
+
+
+The lef file contains the cell that we created:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/1732c137-193d-4618-a803-48209acb7d17)
+
+
+Make sure to type the following commands after the prep -design picorv32a step:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3a9cbe45-a807-4d53-a261-14e40f1a438d)
+
+And then as usual, run_synthesis
+to run floorplan and placement:
+
+```
+init_floorplan
+run_placement
+```
+
+Open the recent placements file:
+
+```
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/83229b6d-2f37-4983-a558-1c9af6aba1ec)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c8264cbe-f295-451c-94f6-6ecd5ae709b5)
+
+
+
+
+
 
 
