@@ -760,5 +760,3 @@ After floorplanning and placement using custom cell:
 
 
 
-
-
