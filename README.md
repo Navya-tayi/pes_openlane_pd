@@ -752,6 +752,9 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c8264cbe-f295-451c-94f6-6ecd5ae709b5.png)
 
 
+After floorplanning and placement using custom cell:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d8092ebf-41e7-4230-8621-46b0de866e50.png)
 
 
 
