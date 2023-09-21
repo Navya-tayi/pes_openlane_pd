@@ -732,9 +732,16 @@ Make sure to type the following commands after the prep -design picorv32a step:
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3a9cbe45-a807-4d53-a261-14e40f1a438d.png)
 
 And then as usual, run_synthesis
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/05ae49cf-9a1f-42ab-ab10-8e55d24413b8)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/bb8253f0-2141-4479-bee8-37bd23b86129)
+
 to run floorplan and placement:
 
 ```
+run_floorplan
 init_floorplan
 run_placement
 ```
@@ -756,7 +763,122 @@ After floorplanning and placement using custom cell:
 
 ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d8092ebf-41e7-4230-8621-46b0de866e50.png)
 
+```
+expand
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/71eff6a1-f7d0-4fc4-8eda-4d6d76566546.png)
 
 
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/46b6b167-1e8c-4edf-b47d-484eebe5ca22.png)
 
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/637256c5-9316-4dc8-9075-aa998b256c32.png)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/bc807dcd-cf76-48c2-a644-9ffc8224dc0e.png)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/dd4274fb-4b65-4a7c-9f97-d417cf51d140.png)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/ac749d44-2239-4b6c-86b8-905f6af401a6.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/36548214-ddbb-40a1-a389-b0a0dec75478.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/72d093a8-9c18-4c3f-af4f-59a1cc77d549.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/52f60f40-cf87-4cce-ad04-523fc5784d1b.png)
+
+slack improved:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/7f577358-cc48-4e73-bb4b-763d9248309cv.png)
+
+* Clock tree synthesis TritonCTS and signal integrity
+
+  ![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/96173ac8-54e9-45af-9036-d927e0190c89.png)
+
+in openlane:
+```
+run_floorplan
+run_placement
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/7a54d9d0-0022-4050-b0cf-346edbc325b4.png)
+
+Clock Tree Synthesis:
+```
+run_cts
+```
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/5f29a0ed-e7f3-4267-909f-5bb2d75eca71.png)
+
+
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/19-09_09-51/tmp/merged.lef
+
+read_def /openLANE_flow/designs/picorv32a/runs/19-09_09-51/results/cts/picorv32a.cts.def
+```
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/95594d4c-d8e4-41e1-95d1-4c7d521745b8.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/ccb3e28c-c013-47ca-b165-3c363d05e96a.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/a532aee2-5800-4f3c-8d53-9829c9766a04.png)
+
+```
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/91148ccf-c8e6-4b80-ac71-a3decd2c9062.png)
+
+Execute OpenSTA with right timing libraries and CTS assignment
+
+
+hold:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/4401acd5-f206-4159-94a5-eec6cc948478.png)
+
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/907cb5f9-a814-4142-9548-eb7eeb33b095.png)
+
+# Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
+```
+gen_pdn
+```
+
+Power distribution network:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/7a0c784e-c9e1-4d52-8c9a-ac63bfa6bb7c.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/726fc9ad-76ef-470d-b067-32bdd55dfbf1.png)
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/d88eb984-9334-43d9-b608-a2eb460e64c3.png)
+
+```
+run_routing
+```
+Algorithm:
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/3659f1ad-7487-4e81-89c3-1bd0adc3b703.png)
+
+0th optimization iteration:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/c60fd89b-0a68-43e4-a9c2-ea75612d2b7a.png)
+
+1st optimization iteration:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/86c44044-6f35-4d9d-91eb-ebb705659885.png)
+
+2nd optimization iteration:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/f36dd590-963f-4712-ae2c-77de57e04cfd.png)
+
+17th optimization iteration:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0645c7df-3c37-4b24-bb3f-b61c1641e328.png)
+
+
+Final Files:
+
+![image](https://github.com/Navya-tayi/pes_openlane_pd/assets/79205242/0a42a6e2-aff2-4261-8d59-610c63661543,png)
 
